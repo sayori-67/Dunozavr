@@ -92,8 +92,8 @@ PTERO_SPAWN_CHANCE = 0.3
 PTERO_Y_POSITIONS = [ground_y - 80, ground_y - 120, ground_y -40]
 
 try:
-    ptero_sprites =  [pygame.image.load("image/ptero/Ptero1.png").convert_alpha(),
-        pygame.image.load("image/ptero/Ptero2.png").convert_alpha()]
+    ptero_sprites =  [pygame.image.load("image/pterodactel/voador1.png").convert_alpha(),
+                      pygame.image.load("image/pterodactel/voador2.png").convert_alpha()]
 except pygame.error as e:
     print('error', e)
     ptero_sprites = []
@@ -118,6 +118,8 @@ def restart_game():
     global dino_y, dino_vel_y, dino_is_jumping
     global dino_animation_index, dino_animation_timer
     global ground_x1, ground_x2, obstacle_spawn_timer
+    global game_speed
+
 
     score = 0
     game_active = True
@@ -156,10 +158,11 @@ while running:
                 elif event.key == pygame.K_ESCAPE:
                     running = False
     if game_active:
-
+            game_speed += 0.002
         if dino_is_jumping or dino_y < ground_y:
             dino_vel_y += gravity
             dino_y += dino_vel_y
+
 
             if dino_y >= ground_y:
                 dino_y = ground_y
